@@ -1,0 +1,29 @@
+doctype html
+html(ng-app='ekrkApp')
+  head
+
+    title Eesti Keeleressursside Keskus
+
+    base(href='/')
+
+    meta(charset='utf-8')
+    meta(name='viewport', content='initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width, minimal-ui')
+    meta(name='apple-mobile-web-app-capable', content='yes')
+    meta(name='apple-mobile-web-app-status-bar-style', content='black')
+
+    link(rel='stylesheet', href='https://fonts.googleapis.com/css?family=Open+Sans:300,600')
+
+    style @@include('stylesheet.css')
+
+    script @@include('javascript.js')
+
+  body
+    #wrapper
+      #content.container
+        .row
+          a(href='http://keeleressursid.ee')
+            img.col-xs-10.col-sm-6.col-xs-offset-1.col-sm-offset-3(src='https://entu.entu.ee/api2/file-71')
+
+        div(ng-view, autoscroll='true')
+
+    include start
