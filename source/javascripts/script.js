@@ -48,6 +48,8 @@ angular.module('ekrkApp', ['ngRoute', 'ngResource'])
 // START
     .controller('startCtrl', ['$scope', '$http', function($scope, $http) {
         $scope.sendLink = function() {
+            if(!$scope.application.forename) return
+            if(!$scope.application.surname) return
             if(!$scope.application.email) return
 
             $scope.sending = true
@@ -59,6 +61,12 @@ angular.module('ekrkApp', ['ngRoute', 'ngResource'])
                         'person-forename': $scope.application.forename,
                         'person-surname': $scope.application.surname,
                         'person-email': $scope.application.email,
+                        'person-company': $scope.application.company,
+                        'person-access-entu': $scope.application.access.entu,
+                        'person-access-metashare': $scope.application.access.metashare,
+                        'person-access-gitlab': $scope.application.access.gitlab,
+                        'person-access-hosting': $scope.application.access.hosting,
+                        'person-access-www': $scope.application.access.www,
                     })
                 })
                 .success(function(data) {

@@ -1,11 +1,11 @@
 script(type='text/ng-template', id='start')
 
   .row
-    h1.col-xs-12.col-sm-10.col-sm-offset-1.text-center(ng-show='!sent') Kasutaja taotlus
+    h1.col-xs-12.col-sm-10.col-sm-offset-1.text-center(ng-show='!sent') Kasutaja õiguste taotlus
     h1.col-xs-12.col-sm-10.col-sm-offset-1.text-center(ng-show='sent') Tänud!
 
   .row(ng-show='sent')
-    p.text-center.col-xs-12.col-sm-8.col-sm-offset-2 Taotlus edastatud. Teiega võetakse ühendust e-posti aadressil {{ email }}.
+    p.text-center.col-xs-12.col-sm-8.col-sm-offset-2 Taotlus edastatud. Teiega võetakse ühendust e-posti aadressil {{ application.email }}.
 
   form#application.row(ng-show='!sent')
     .spacer.col-xs-12
@@ -23,35 +23,35 @@ script(type='text/ng-template', id='start')
       input.form-control(id='email', type='email', ng-model='application.email')
 
     .form-group.col-xs-12.col-sm-4.col-sm-offset-4
-      label.control-label(for='organisation') Asutus
-      input.form-control(id='organisation', type='text', ng-model='application.organisation')
+      label.control-label(for='company') Asutus
+      input.form-control(id='company', type='text', ng-model='application.company')
 
     .spacer.col-xs-12
 
     p.col-xs-12.col-sm-4.col-sm-offset-4 Soovin ligipääsu:
 
     .form-groupcheckbox.col-xs-12.col-sm-4.col-sm-offset-4
-        input(type='checkbox', ng-model='application.access_entu', style='margin-right:10px;')
+        input(type='checkbox', ng-model='application.access.entu', style='margin-right:10px;')
         label
           a(href='https://entu.keeleressursid.ee/public', target='_blank') Entu
 
     .form-groupcheckbox.col-xs-12.col-sm-4.col-sm-offset-4
-        input(type='checkbox', ng-model='application.access_metashare', style='margin-right:10px;')
+        input(type='checkbox', ng-model='application.access.metashare', style='margin-right:10px;')
         label
           a(href='https://metashare.ut.ee', target='_blank') Meta-Share
 
     .form-groupcheckbox.col-xs-12.col-sm-4.col-sm-offset-4
-        input(type='checkbox', ng-model='application.access_gitlab', style='margin-right:10px;')
+        input(type='checkbox', ng-model='application.access.gitlab', style='margin-right:10px;')
         label
           a(href='https://gitlab.keeleressursid.ee', target='_blank') GitLab
 
     .form-groupcheckbox.col-xs-12.col-sm-4.col-sm-offset-4
-        input(type='checkbox', ng-model='application.access_server', style='margin-right:10px;')
+        input(type='checkbox', ng-model='application.access.hosting', style='margin-right:10px;')
         label
           a(href='http://keeleressursid.ee/et/teenused/keeleressursside-arhiveerimine-ja-haldamine', target='_blank') Serverimajutus
 
     .form-groupcheckbox.col-xs-12.col-sm-4.col-sm-offset-4
-        input(type='checkbox', ng-model='application.access_www', style='margin-right:10px;')
+        input(type='checkbox', ng-model='application.access.www', style='margin-right:10px;')
         label
           a(href='http://keeleressursid.ee/et/login', target='_blank') EKRK koduleht
 
