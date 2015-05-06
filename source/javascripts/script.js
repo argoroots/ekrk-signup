@@ -80,21 +80,21 @@ angular.module('ekrkApp', ['ngRoute', 'ngResource'])
                             })
                         })
                         .success(function(data) {
-                            $http({
-                                    method : 'POST',
-                                    url    : FLEEP_HOOK_URL,
-                                    data   : {
-                                        'message': 'https://entu.keeleressursid.ee/entity/person/' + $scope.id
-                                    }
-                                })
-                                .success(function(data) {
+                            // $http({
+                            //         method : 'POST',
+                            //         url    : FLEEP_HOOK_URL,
+                            //         data   : {
+                            //             'message': 'https://entu.keeleressursid.ee/entity/person/' + $scope.id
+                            //         }
+                            //     })
+                            //     .success(function(data) {
                                     $scope.sending = false
                                     $scope.sent = true
-                                })
-                                .error(function(data) {
-                                    cl(data.error)
-                                    $scope.sending = false
-                                })
+                                // })
+                                // .error(function(data) {
+                                //     cl(data.error)
+                                //     $scope.sending = false
+                                // })
                         })
                         .error(function(data) {
                             cl(data.error)
