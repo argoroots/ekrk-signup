@@ -2,6 +2,7 @@ var PAGE_URL       = 'http://c3sregistration.studyitin.ee/'
 var API_URL        = 'https://entu.keeleressursid.ee/api2/'
 var API_USER       = 711
 var API_KEY        = 's2SuDSy9Bx5Qowj492ThZSKgZ8yCL7B1qBW2D11qeBF9KivEDCkM8LBvlPoa0Ddb'
+var FLEEP_HOOK_URL = 'https://fleep.io/hook/abypGACaReaTyC6PGvw1SQ'
 
 function cl(d) {
     console.log(d)
@@ -79,8 +80,21 @@ angular.module('ekrkApp', ['ngRoute', 'ngResource'])
                             })
                         })
                         .success(function(data) {
-                            $scope.sending = false
-                            $scope.sent = true
+                            $http({
+                                    method : 'POST',
+                                    url    : FLEEP_HOOK_URL,
+                                    data   : {
+                                        'message': 'https://entu.keeleressursid.ee/entity/person/' + $scope.id
+                                    }
+                                })
+                                .success(function(data) {
+                                    $scope.sending = false
+                                    $scope.sent = true
+                                })
+                                .error(function(data) {
+                                    cl(data.error)
+                                    $scope.sending = false
+                                })
                         })
                         .error(function(data) {
                             cl(data.error)
