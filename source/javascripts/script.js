@@ -48,6 +48,11 @@ angular.module('ekrkApp', ['ngRoute', 'ngResource'])
 
 // START
     .controller('startCtrl', ['$scope', '$http', function($scope, $http) {
+        $scope.checkData = function() {
+            if(!$scope.application) return
+            return $scope.application.forename && $scope.application.surname && $scope.application.email
+        }
+
         $scope.sendLink = function() {
             if(!$scope.application.forename) return
             if(!$scope.application.surname) return

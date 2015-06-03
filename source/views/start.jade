@@ -55,5 +55,9 @@ script(type='text/ng-template', id='start')
         label
           a(href='http://keeleressursid.ee/et/login', target='_blank') EKRK koduleht
 
-    button.col-xs-10.col-sm-4.col-xs-offset-1.col-sm-offset-4.btn.btn-lg.btn-success(ng-show='!sending && !sent', ng-click='sendLink()') Esita taotlus
-    button.col-xs-10.col-sm-4.col-xs-offset-1.col-sm-offset-4.btn.btn-lg.btn-success.disabled(ng-show='sending && !sent') Saadan andmeid ...
+    .spacer.col-xs-12(ng-show='!checkData()')
+
+    p.col-xs-12.col-sm-4.col-sm-offset-4(ng-show='!checkData()', style='color:red;text-align:center;') Sisest eesnimi, perenimi ja e-post!
+
+    button.col-xs-10.col-sm-4.col-xs-offset-1.col-sm-offset-4.btn.btn-lg.btn-success(ng-show='checkData() && !sending && !sent', ng-click='sendLink()') Esita taotlus
+    button.col-xs-10.col-sm-4.col-xs-offset-1.col-sm-offset-4.btn.btn-lg.btn-success.disabled(ng-show='checkData() && sending && !sent') Saadan andmeid ...
