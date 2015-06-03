@@ -55,6 +55,8 @@ script(type='text/ng-template', id='start')
         label
           a(href='http://keeleressursid.ee/et/login', target='_blank') EKRK koduleht
 
+    //- pre.row {{ checkData() | json }}
+
     .spacer.col-xs-12(ng-show='!checkData()')
 
     p.col-xs-12.col-sm-4.col-sm-offset-4(ng-show='!checkData()', style='color:red;text-align:center;') Sisest eesnimi, perenimi ja e-post!

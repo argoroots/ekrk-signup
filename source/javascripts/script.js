@@ -49,8 +49,10 @@ angular.module('ekrkApp', ['ngRoute', 'ngResource'])
 // START
     .controller('startCtrl', ['$scope', '$http', function($scope, $http) {
         $scope.checkData = function() {
-            if(!$scope.application) return
-            return $scope.application.forename && $scope.application.surname && $scope.application.email
+            if(!$scope.application) return false
+            if(!$scope.application.forename || !$scope.application.surname || !$scope.application.email || !$scope.application.access) return false
+
+            return $scope.application.access.entu || $scope.application.access.metashare || $scope.application.access.gitlab || $scope.application.access.hosting || $scope.application.access.www
         }
 
         $scope.sendLink = function() {
