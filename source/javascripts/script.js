@@ -139,7 +139,6 @@ angular.module('ekrkApp', ['ngRoute', 'ngResource'])
                             })
                         })
                         .success(function(data) {
-                            var tasks = []
                             for(i in $scope.services) {
                                 if($scope.services[i].checked) {
                                     $http({
@@ -150,30 +149,30 @@ angular.module('ekrkApp', ['ngRoute', 'ngResource'])
                                         })
                                     })
                                     .success(function(data) {
-                                        cl(data)
+                                        for(f in $scope.services[i].fleep) {
+                                            $http({
+                                                    method : 'POST',
+                                                    url    : FLEEP_HOOK_URL,
+                                                    data   : {
+                                                        'message': '/taskto @' + $scope.services[i].fleep[f] + ' https://entu.keeleressursid.ee/entity/person/' + $scope.id
+                                                    }
+                                                })
+                                                .success(function(data) {
+                                                    $scope.sending = false
+                                                    $scope.sent = true
+                                                })
+                                                .error(function(data) {
+                                                    cl(data.error)
+                                                    $scope.sending = false
+                                                })
+                                        }
                                     })
                                     .error(function(data) {
                                         cl(data.error)
                                         $scope.sending = false
                                     })
-                                    tasks.push($scope.services[i].fleep)
                                 }
                             }
-                            $http({
-                                    method : 'POST',
-                                    url    : FLEEP_HOOK_URL,
-                                    data   : {
-                                        'message': 'https://entu.keeleressursid.ee/entity/person/' + $scope.id + '\n\n/taskto @' + tasks.join('\n/taskto @')
-                                    }
-                                })
-                                .success(function(data) {
-                                    $scope.sending = false
-                                    $scope.sent = true
-                                })
-                                .error(function(data) {
-                                    cl(data.error)
-                                    $scope.sending = false
-                                })
                         })
                         .error(function(data) {
                             cl(data.error)
