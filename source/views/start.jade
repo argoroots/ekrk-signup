@@ -30,32 +30,12 @@ script(type='text/ng-template', id='start')
 
     p.col-xs-12.col-sm-4.col-sm-offset-4 Soovin ligipääsu:
 
-    .form-groupcheckbox.col-xs-12.col-sm-4.col-sm-offset-4
-        input(type='checkbox', ng-model='application.access.entu', style='margin-right:10px;')
+    .form-groupcheckbox.col-xs-12.col-sm-4.col-sm-offset-4(ng-repeat='s in services | orderBy: "name"')
+        input(type='checkbox', ng-model='s.checked', style='margin-right:10px;')
         label
-          a(href='https://entu.keeleressursid.ee/public', target='_blank') Entu
+          a(href='{{ s.url }}', target='_blank', title='{{ s.description }}') {{ s.name }}
 
-    .form-groupcheckbox.col-xs-12.col-sm-4.col-sm-offset-4
-        input(type='checkbox', ng-model='application.access.metashare', style='margin-right:10px;')
-        label
-          a(href='https://metashare.ut.ee', target='_blank') Meta-Share
-
-    .form-groupcheckbox.col-xs-12.col-sm-4.col-sm-offset-4
-        input(type='checkbox', ng-model='application.access.gitlab', style='margin-right:10px;')
-        label
-          a(href='https://gitlab.keeleressursid.ee/explore/projects', target='_blank') GitLab
-
-    .form-groupcheckbox.col-xs-12.col-sm-4.col-sm-offset-4
-        input(type='checkbox', ng-model='application.access.hosting', style='margin-right:10px;')
-        label
-          a(href='http://keeleressursid.ee/et/teenused/keeleressursside-arhiveerimine-ja-haldamine', target='_blank') Serverimajutus
-
-    .form-groupcheckbox.col-xs-12.col-sm-4.col-sm-offset-4
-        input(type='checkbox', ng-model='application.access.www', style='margin-right:10px;')
-        label
-          a(href='http://keeleressursid.ee/et/login', target='_blank') EKRK koduleht
-
-    //- pre.row {{ checkData() | json }}
+    //- pre.row {{ services | json }}
 
     .spacer.col-xs-12(ng-show='!checkData()')
 
