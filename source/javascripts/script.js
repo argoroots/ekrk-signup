@@ -2,7 +2,6 @@ var PAGE_URL       = 'http://c3sregistration.studyitin.ee/'
 var API_URL        = 'https://entu.keeleressursid.ee/api2/'
 var API_USER       = 711
 var API_KEY        = 's2SuDSy9Bx5Qowj492ThZSKgZ8yCL7B1qBW2D11qeBF9KivEDCkM8LBvlPoa0Ddb'
-// var FLEEP_HOOK_URL = 'https://fleep.io/chat/iMYo7cQRSimxY0w9ieqQCQ'
 var FLEEP_HOOK_URL = 'https://fleep.io/hook/abypGACaReaTyC6PGvw1SQ'
 
 function cl(d) {
@@ -110,12 +109,20 @@ angular.module('ekrkApp', ['ngRoute', 'ngResource'])
             if(!$scope.application.surname) return
             if(!$scope.application.email) return
 
-            $scope.sending = true
-
             var services = []
+            var fleepers = []
             for(i in $scope.services) {
-                if($scope.services[i].checked) services.push($scope.services[i].id)
+                if($scope.services[i].checked) {
+                    services.push($scope.services[i].id)
+                    for(f in $scope.services[i].fleep) {
+                        var fleepio = $scope.services[i].fleep[f].split('@')[0]
+                        if(fleepers.indexOf(fleepio) === -1) fleepers.push(fleepio)
+                    }
+                }
             }
+            if(!services) return
+
+            $scope.sending = true
 
             $http({
                     method : 'POST',
@@ -139,37 +146,26 @@ angular.module('ekrkApp', ['ngRoute', 'ngResource'])
                         })
                         .success(function(data) {
                             var tasks = []
-                            for(i in $scope.services) {
-                                if($scope.services[i].checked) {
-                                    $http({
-                                        method : 'PUT',
-                                        url    : API_URL + 'entity-' + $scope.id,
-                                        data   : getSignedData(API_USER, API_KEY, {
-                                            'person-service': $scope.services[i].id
-                                        })
+                            for(i in services) {
+                                $http({
+                                    method : 'PUT',
+                                    url    : API_URL + 'entity-' + $scope.id,
+                                    data   : getSignedData(API_USER, API_KEY, {
+                                        'person-service': services[i]
                                     })
-                                    .success(function(data) {
-                                        for(f in $scope.services[i].fleep) {
-                                            if (tasks.indexOf($scope.services[i].fleep[f]) == -1) tasks.push($scope.services[i].fleep[f])
-                                        }
-                                    })
-                                    .error(function(data) {
-                                        cl(data.error)
-                                        $scope.sending = false
-                                    })
-                                }
+                                })
+                                .error(function(data) {
+                                    cl(data.error)
+                                    $scope.sending = false
+                                })
                             }
-                            cl(tasks)
-                            for(f in tasks) {
+                            for(f in fleepers) {
                                 $http({
                                     method : 'POST',
                                     url    : FLEEP_HOOK_URL,
                                     data   : {
-                                        'message': '/taskto @' + tasks[f] + ' https://entu.keeleressursid.ee/entity/person/' + $scope.id
+                                        'message': '/taskto @' + fleepers[f] + ' - https://entu.keeleressursid.ee/entity/person/' + $scope.id
                                     }
-                                })
-                                .success(function(data) {
-
                                 })
                                 .error(function(data) {
                                     cl(data.error)
