@@ -163,7 +163,7 @@ angular.module('ekrkApp', ['ngRoute', 'ngResource'])
                                     method : 'POST',
                                     url    : FLEEP_HOOK_URL,
                                     data   : {
-                                        'message': 'https://entu.keeleressursid.ee/entity/person/' + $scope.id + tasks.join('\n/taskto @')
+                                        'message': 'https://entu.keeleressursid.ee/entity/person/' + $scope.id + '\n\n/taskto @' + tasks.join('\n/taskto @')
                                     }
                                 })
                                 .success(function(data) {
