@@ -2,8 +2,8 @@ var PAGE_URL       = 'http://c3sregistration.studyitin.ee/'
 var API_URL        = 'https://entu.keeleressursid.ee/api2/'
 var API_USER       = 711
 var API_KEY        = 's2SuDSy9Bx5Qowj492ThZSKgZ8yCL7B1qBW2D11qeBF9KivEDCkM8LBvlPoa0Ddb'
-var FLEEP_HOOK_URL = 'https://fleep.io/chat/iMYo7cQRSimxY0w9ieqQCQ'
-// var FLEEP_HOOK_URL = 'https://fleep.io/hook/abypGACaReaTyC6PGvw1SQ'
+// var FLEEP_HOOK_URL = 'https://fleep.io/chat/iMYo7cQRSimxY0w9ieqQCQ'
+var FLEEP_HOOK_URL = 'https://fleep.io/hook/abypGACaReaTyC6PGvw1SQ'
 
 function cl(d) {
     console.log(d)
