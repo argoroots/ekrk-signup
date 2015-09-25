@@ -1,13 +1,21 @@
 script(type='text/ng-template', id='start')
 
   .row
-    h1.col-xs-12.col-sm-10.col-sm-offset-1.text-center(ng-show='!sent') Kasutaja õiguste taotlus
+    h1.col-xs-12.col-sm-10.col-sm-offset-1.text-center(ng-show='!sent') Kasutajaõiguste taotlus
     h1.col-xs-12.col-sm-10.col-sm-offset-1.text-center(ng-show='sent') Tänud!
 
   .row(ng-show='sent')
     p.text-center.col-xs-12.col-sm-8.col-sm-offset-2 Taotlus edastatud. Teiega võetakse ühendust e-posti aadressil {{ application.email }}.
 
   form#application.row(ng-show='!sent')
+    .spacer.col-xs-12
+
+    p.col-xs-12.col-sm-4.col-sm-offset-4 Soovin ligipääsu:
+
+    .form-groupcheckbox.col-xs-12.col-sm-4.col-sm-offset-4(ng-repeat='s in services | orderBy: "name"')
+      input(type='checkbox', ng-model='s.checked', style='margin-right:10px;')
+      label
+        a(href='{{ s.url }}', target='_blank', title='{{ s.description }}') {{ s.name }}
     .spacer.col-xs-12
 
     .form-group.col-xs-12.col-sm-4.col-sm-offset-4
@@ -26,20 +34,12 @@ script(type='text/ng-template', id='start')
       label.control-label(for='company') Asutus
       input.form-control(id='company', type='text', ng-model='application.company')
 
-    .spacer.col-xs-12
-
-    p.col-xs-12.col-sm-4.col-sm-offset-4 Soovin ligipääsu:
-
-    .form-groupcheckbox.col-xs-12.col-sm-4.col-sm-offset-4(ng-repeat='s in services | orderBy: "name"')
-        input(type='checkbox', ng-model='s.checked', style='margin-right:10px;')
-        label
-          a(href='{{ s.url }}', target='_blank', title='{{ s.description }}') {{ s.name }}
 
     //- pre.row {{ services | json }}
 
     .spacer.col-xs-12(ng-show='!checkData()')
 
-    p.col-xs-12.col-sm-4.col-sm-offset-4(ng-show='!checkData()', style='color:red;text-align:center;') Sisest eesnimi, perenimi ja e-post!
+    p.col-xs-12.col-sm-4.col-sm-offset-4(ng-show='!checkData()', style='color:red;text-align:center;') Sisesta eesnimi, perenimi ja e-post!
 
     button.col-xs-10.col-sm-4.col-xs-offset-1.col-sm-offset-4.btn.btn-lg.btn-success(ng-show='checkData() && !sending && !sent', ng-click='sendLink()') Esita taotlus
     button.col-xs-10.col-sm-4.col-xs-offset-1.col-sm-offset-4.btn.btn-lg.btn-success.disabled(ng-show='checkData() && sending && !sent') Saadan andmeid ...
