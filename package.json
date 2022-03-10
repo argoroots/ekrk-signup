@@ -1,18 +1,24 @@
 {
-  "name": "EKRK-Signup",
-  "version": "0.0.1",
+  "name": "ekrk-signup",
+  "version": "0.0.2",
   "author": "Argo Roots <argo@roots.ee>",
   "private": true,
+  "scripts": {
+    "bower":"bower install",
+    "dev":"grunt",
+    "build":"grunt build"
+  },
   "devDependencies": {
-    "grunt": "*",
-    "grunt-contrib-clean": "*",
-    "grunt-contrib-connect": "*",
-    "grunt-contrib-cssmin": "*",
-    "grunt-contrib-jade": "*",
-    "grunt-contrib-less": "*",
-    "grunt-contrib-stylus": "*",
-    "grunt-contrib-uglify": "*",
-    "grunt-contrib-watch": "*",
-    "grunt-include-replace": "*"
+    "bower": "1.8.13",
+    "grunt": "1.4.1",
+    "grunt-contrib-clean": "2.0.0",
+    "grunt-contrib-connect": "3.0.0",
+    "grunt-contrib-cssmin": "4.0.0",
+    "grunt-contrib-jade": "1.0.0",
+    "grunt-contrib-less": "3.0.0",
+    "grunt-contrib-stylus": "1.2.0",
+    "grunt-contrib-uglify": "5.0.1",
+    "grunt-contrib-watch": "1.1.0",
+    "grunt-include-replace": "5.0.0"
   }
 }

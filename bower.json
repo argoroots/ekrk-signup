@@ -1,13 +1,12 @@
 {
-  "name": "EKRK Signup",
-  "version": "0.0.1",
+  "name": "ekrk-signup",
+  "version": "0.0.2",
   "author": "Argo Roots <argo@roots.ee>",
   "private": true,
   "devDependencies": {
-    "angular": "1.*",
-    "angular-resource": "1.*",
-    "angular-route": "1.*",
-    "bootstrap": "3.*",
-    "crypto-js": "http://crypto-js.googlecode.com/files/CryptoJS%20v3.1.2.zip"
+    "angular": "1.4.14",
+    "angular-resource": "1.4.14",
+    "angular-route": "1.4.14",
+    "bootstrap": "3.4.1"
   }
 }

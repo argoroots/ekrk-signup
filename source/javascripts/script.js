@@ -34,7 +34,7 @@ angular.module('ekrkApp', ['ngRoute', 'ngResource'])
 
 // ROUTER
     .config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
-        // $locationProvider.html5Mode(true)
+        $locationProvider.html5Mode(true)
         $routeProvider
             .when('/', {
                 templateUrl: 'start',
