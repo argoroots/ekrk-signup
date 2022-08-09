@@ -16,7 +16,7 @@ module.exports = function (grunt) {
                 flatten: true,
             }
         },
-        jade: {
+        pug: {
             html: {
                 options: {
                     pretty: false,
@@ -24,7 +24,7 @@ module.exports = function (grunt) {
                 files: [{
                     expand: true,
                     cwd: 'source/views',
-                    src: ['index.jade'],
+                    src: ['index.pug'],
                     dest: 'tmp',
                     ext: '.html'
                 }]
@@ -92,9 +92,9 @@ module.exports = function (grunt) {
                 files: 'source/**/*.js',
                 tasks: ['uglify', 'includereplace']
             },
-            jade: {
-                files: 'source/**/*.jade',
-                tasks: ['jade', 'includereplace']
+            pug: {
+                files: 'source/**/*.pug',
+                tasks: ['pug', 'includereplace']
             },
         }
     })
@@ -103,7 +103,7 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-contrib-copy')
     grunt.loadNpmTasks('grunt-contrib-connect')
     grunt.loadNpmTasks('grunt-contrib-cssmin')
-    grunt.loadNpmTasks('grunt-contrib-jade')
+    grunt.loadNpmTasks('grunt-contrib-pug')
     grunt.loadNpmTasks('grunt-contrib-less')
     grunt.loadNpmTasks('grunt-contrib-stylus')
     grunt.loadNpmTasks('grunt-contrib-uglify')
@@ -113,7 +113,7 @@ module.exports = function (grunt) {
     grunt.registerTask(
         'build',
         'Compiles all of the assets and copies the files to the build directory. Cleanup all mess.',
-        ['clean', 'copy', 'jade', 'stylus', 'cssmin', 'uglify', 'includereplace']
+        ['clean', 'copy', 'pug', 'stylus', 'cssmin', 'uglify', 'includereplace']
     )
 
     grunt.registerTask(
