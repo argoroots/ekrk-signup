@@ -2,8 +2,19 @@ module.exports = function (grunt) {
     grunt.initConfig({
         clean: {
             build: {
-                src: 'tmp'
+                src: ['tmp', 'dist']
             },
+            postbuild: {
+                src: ['tmp']
+            }
+        },
+        copy: {
+            glyphicons: {
+                src: ['assets/js/crypto-js.min.js'],
+                dest: 'dist',
+                expand: true,
+                flatten: true,
+            }
         },
         jade: {
             html: {
@@ -59,9 +70,7 @@ module.exports = function (grunt) {
         includereplace: {
             all: {
                 files: {
-                    'index.html': [
-                        'tmp/index.html'
-                    ]
+                    'dist/index.html': ['tmp/index.html']
                 }
             }
         },
@@ -91,6 +100,7 @@ module.exports = function (grunt) {
     })
 
     grunt.loadNpmTasks('grunt-contrib-clean')
+    grunt.loadNpmTasks('grunt-contrib-copy')
     grunt.loadNpmTasks('grunt-contrib-connect')
     grunt.loadNpmTasks('grunt-contrib-cssmin')
     grunt.loadNpmTasks('grunt-contrib-jade')
@@ -103,7 +113,7 @@ module.exports = function (grunt) {
     grunt.registerTask(
         'build',
         'Compiles all of the assets and copies the files to the build directory. Cleanup all mess.',
-        ['clean', 'jade', 'stylus', 'cssmin', 'uglify', 'includereplace']
+        ['clean', 'copy', 'jade', 'stylus', 'cssmin', 'uglify', 'includereplace']
     )
 
     grunt.registerTask(
