@@ -10,7 +10,7 @@ module.exports = function (grunt) {
         },
         copy: {
             glyphicons: {
-                src: ['assets/js/crypto-js.min.js'],
+                src: ['assets/crypto-js.min.js'],
                 dest: 'dist',
                 expand: true,
                 flatten: true,
